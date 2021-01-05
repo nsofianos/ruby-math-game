@@ -9,5 +9,5 @@ require './game.rb'
 #puts niko.lives
 
 newGame = Game.new()
-
+newGame.new_turn
 

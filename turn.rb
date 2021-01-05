@@ -5,23 +5,27 @@ class Turn
   attr_accessor :firstNum, :secondNum
 
   def initialize()
-    puts "----NEW TURN----"
     @firstNum = rand(1..20)
     @secondNum = rand(1..20)
   end
 
-  def validate(answer, firstnum, secondnum)
-    if (firstnum + secondnum) == answer
-      puts "YES! That's correct."
+  def validate(answer, firstNum, secondNum)
+    if (firstNum + secondNum) == answer
+      return true
     else 
-      puts "Seriously? No!"
+      return false
     end
   end
 
-  def ask()
-    puts "#{}: What does #{@firstNum} plus #{@secondNum} equal?"
+  def ask(currentPlayer)
+    puts "#{currentPlayer.name}: What does #{@firstNum} plus #{@secondNum} equal?"
     answer = gets.chomp.to_i
-    self.validate(answer, @firstNum, @secondNum)
+    if self.validate(answer, @firstNum, @secondNum)
+      puts "YES! That's correct."
+    else
+      puts "Seriously? No!"
+      currentPlayer.lives -= 1
+    end
   end
 
 
